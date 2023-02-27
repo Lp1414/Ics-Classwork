@@ -1,0 +1,114 @@
+# Imports go at the top
+from microbit import *
+import random
+import time
+x=0 #dinosaur
+y=4  #dinsoaur
+y2=3  #dinosaur
+obj_x= 4 #object
+obj_y= random.randrange(0,4)  #object
+frame_count = 0
+score = 0
+
+
+while True:
+    frame_count += 1
+    if button_b.was_pressed():
+    
+            
+        y-=1
+        y2-=1
+            
+    if y2 == -1:
+        y2=0
+    if y == 0:
+        y= 1
+           
+     
+        
+        
+    if button_a.was_pressed():
+        
+            y+=1
+            y2+=1
+    if y == 5:
+        y = 4
+    if y2 == 4:
+        y2 = 3
+       
+
+    if frame_count == 30:
+        obj_x -=1
+        frame_count = 0
+    if score >=5:
+        if frame_count == 25:
+            obj_x -=1
+            frame_count = 0
+    if score >= 10:
+        if frame_count ==20:
+            obj_x -=1
+            frame_count = 0
+    if score >= 15:
+        if frame_count == 15:
+            obj_x -=1
+            frame_count = 0
+    if score >= 20:
+        if frame_count == 10:
+            obj_x -= 1
+            frame_count = 0
+    if score >= 25:
+        if frame_count == 5:
+            obj_x -= 1
+            frame_count = 0
+    
+            
+
+    if obj_x  == -1:
+        obj_x = 4
+        obj_y= random.randrange(0,4)
+        score += 1
+        print (score)
+
+
+
+        
+    if x == obj_x and y==obj_y :
+        print('hit')
+        break
+    if x == obj_x and y2 == obj_y :
+        print('hit')
+        break
+    if score == 30:
+        break
+ 
+        
+    
+     
+        
+        
+        
+        
+        
+        
+        
+    
+        
+    
+
+
+        
+       
+    
+    display.clear() 
+    display.set_pixel(x,y,9)
+    display.set_pixel(x,y2,9)
+    display.set_pixel(obj_x,obj_y,9)
+    sleep(10)
+display.scroll("Game Over")   
+display.scroll("Score: {}".format(score))
+if score == 20:
+    display.scroll("You Win")
+
+
+
+
